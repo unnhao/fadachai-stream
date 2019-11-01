@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-
+const port = process.env.PORT || 1337;
 app.use((req, res, next) => {
   console.log('HTTP Request: ' + req.method + ' ' + req.originalUrl);
   return next();
@@ -52,6 +52,8 @@ io.on('connection', (socket) => {
     ffmpeg.kill('SIGINT');
   })
 });
-http.listen(process.env.PORT || 1337, function () {
-  console.log('listening on *: ' + process.env.PORT || 1337);
+
+
+http.listen(port, function () {
+  console.log('listening on *: ' + port);
 });
