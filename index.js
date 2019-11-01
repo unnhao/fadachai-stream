@@ -48,11 +48,10 @@ io.on('connection', (socket) => {
     ffmpeg.stdin.write(msg);
   })
 
-  socket.on('disconnect', function() {
+  socket.on('disconnect', function () {
     ffmpeg.kill('SIGINT');
   })
 });
-
-http.listen(1337, function () {
-  console.log('listening on *:3000');
+http.listen(process.env.PORT || 1337, function () {
+  console.log('listening on *: ' + process.env.PORT || 1337);
 });
